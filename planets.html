@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Starships</title>
+<title>Planets</title>
 <link href="style.css" rel="stylesheet" type="text/css" />
 <script language="JavaScript">
 		function showform(dowhat) {
@@ -41,7 +41,7 @@
 </head>
 
 <body onload="_browse()">
-<h1>Starships</h1>
+<h1>Planets</h1>
 
 [ <a href="index.html">Homepage</a> | <a href="pilots.html">Pilots</a> | <a href="starships.html">Starships</a> | <a href="weapon_loadouts.html">Weapon Loadouts</a> | <a href="hyperspace_routes.html">Hyperspace Routes</a> |  <a href="planets.html">Planets</a> | <a href="starship_route_permits.html">Starship Route Permits</a> | <a href="planets_in_routes.html">Planets In Routes</a> ]
 
@@ -50,34 +50,30 @@
 
 <table border="1" cellpadding="5">
   <tr>
-    <th>starship_id</th>
+    <th>planet_id</th>
     <th>name</th>
-    <th>type</th>
-    <th>pilot_id</th>
+    <th>region</th>
     <th></th>
     <th></th>
   </tr>
   <tr>
     <td align="right" >1</td>
-    <td >Millennium Falcon</td>
-    <td >Freighter</td>
-    <td align="right">2</td>
+    <td >Coruscant</td>
+    <td >Core Worlds</td>
     <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
     <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
   </tr>
   <tr>
     <td align="right" >2</td>
-    <td>Cool Ship</td>
-    <td >Starfighter</td>
-    <td align="right">3</td>
+    <td>Corellia</td>
+    <td>Core Worlds</td>
     <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
     <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
   </tr>
   <tr>
     <td align="right">3</td>
-    <td>Boring Ship</td>
-    <td >Freighter</td>
-    <td align="right">3</td>
+    <td>Kal'Shebbol</td>
+    <td>Outer Rim</td>
     <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
     <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
   </tr>
@@ -90,54 +86,42 @@
 <div id="insert">
     <p>&nbsp;</p>
 
-    <form method="POST" id="addNewStarship">
-        <legend><strong>Add Starship</strong></legend>
+    <form method="POST" id="addNewPlanet">
+        <legend><strong>Add Planet</strong></legend>
           <fieldset class="fields">
             <label> name </label> <input type="text" name="name">
-            <label> type </label> <input type="text" name="type">
-            <label> pilot </label>  <select name="pilot">
-            	<option value="0" selected>&nbsp;</option>
-                <option value="1">Luke Skywalker</option>
-                <option value="2">Han Solo</option>
-                <option value="3">Ahsoka Tano</option>
-                </select>
+            <label> region </label> <input type="text" name="region">
       </fieldset>
-          <input class="btn" type="submit" id="addStarship" value="Add">
+          <input class="btn" type="submit" id="addPlanet" value="Add">
           <input class="btn" type="button" value="cancel" onClick="_browse()">
 	</form> 
 </div><!-- insert -->
 <p>&nbsp;</p>
 <div id="update">
-    <form method="POST" id="UpdateStarship">
-        <legend><strong>Update Starship</strong></legend>
+    <form method="POST" id="UpdatePlanet">
+        <legend><strong>Update Planet</strong></legend>
           <fieldset class="fields">
-          <input type="hidden" name="starshipID" id="updateStarshipID" value="1">
-          <label> starship_id: </label> 1
-            <label> name </label> <input type="text" name="name" value="Millennium Falcon">
-            <label> type </label> <input type="text" name="type" value="Freighter">
-            <label> pilot </label> <select name="pilot">
-            	<option value="0">&nbsp;</option>
-                <option value="1">Luke Skywalker</option>
-                <option value="2" selected>Han Solo</option>
-                <option value="3">Ahsoka Tano</option>
-                </select>
+          <input type="hidden" name="planetID" id="updatePlanetID" value="1">
+          <label> planet_id: </label> 1
+            <label> name </label> <input type="text" name="name" value="Coruscant">
+            <label> region </label> <input type="text" name="region" value="Core Worlds">
       </fieldset>
-          <input class="btn" type="submit" id="UpdateSaveStarship" value="Save">
+          <input class="btn" type="submit" id="UpdateSavePlanet" value="Save">
           <input class="btn" type="button" value="cancel" onClick="_browse()">
 	</form> 
 </div><!-- update -->
 <p>&nbsp;</p>
 <div id="delete" style="display: block">
-  <form method="POST" id="deleteStarship">
-      <legend><strong>Delete Starship</strong></legend>
+  <form method="POST" id="deletePlanet">
+      <legend><strong>Delete Planet</strong></legend>
           <fieldset class="fields">
           <p>Are you sure you wish to delete the following?</p>
-          <input type="hidden" name="starshipID" id="deletestarshipID" value="1">
-          <label><strong>starship_id:</strong></label> 1
-            <label> <strong>name</strong> </label> Millennium Falcon
+          <input type="hidden" name="planetID" id="deletePlanetID" value="1">
+          <label><strong>planet_id:</strong></label> 1
+            <label> <strong>name</strong> </label> Coruscant
             
     </fieldset>
-    <input class="btn" type="submit" id="DeleteStarship" value="Delete">
+    <input class="btn" type="submit" id="DeletePlanet" value="Delete">
           <input class="btn" type="button" value="cancel" onClick="_browse()">
   </form> 
 </div><!-- delete -->
