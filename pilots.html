@@ -1,0 +1,136 @@
+<html>
+<head>
+<title>Pilots</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript">
+		function showform(dowhat) {
+			/*
+			* four DIVS: browse, insert, update, delete
+			* this function sets one visible the others not
+			*/
+			if (dowhat == 'insert'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'update'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'delete'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'block';
+			}
+			else { //by default display browse
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+		}
+    function _new() { showform('insert'); }
+    function _update(pid) { showform('update'); }
+    function _delete(pid) { showform ('delete'); }
+    function _browse() { showform ('browse'); }
+</script>
+</head>
+
+<body onload="_browse()">
+<h1>Pilots</h1>
+
+[ <a href="index.html">Homepage</a> | <a href="pilots.html">Pilots</a> | <a href="starships.html">Starships</a> | Weapon Loadouts | Hyperspace Routes |  Planets | Route Permits | Planets In Routes ]
+
+<div id="browse">
+<p>&nbsp;</p>
+
+<table border="1" cellpadding="5">
+  <tr>
+    <th>pilot_id</th>
+    <th>name</th>
+    <th>birthdate</th>
+    <th>species</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr>
+    <td align="right" >1</td>
+    <td >Luke Skywalker</td>
+    <td align="right" >1981-07-26</td>
+    <td>Human</td>
+    <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
+    <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
+  </tr>
+  <tr>
+    <td align="right" >2</td>
+    <td>Han Solo</td>
+    <td align="right" >1968-03-04</td>
+    <td >Human</td>
+    <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
+    <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
+  </tr>
+  <tr>
+    <td align="right">3</td>
+    <td>Ahsoka Tano</td>
+    <td align="right" >1964-08-07</td>
+    <td>Togruta</td>
+    <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
+    <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
+  </tr>
+</table>
+
+<input class="btn" type="button" onClick="_new()" value="New">
+<p>&nbsp;</p>
+</div> <!-- browse -->
+
+<div id="insert">
+    <p>&nbsp;</p>
+
+    <form method="POST" id="addPilot">
+        <legend><strong>Add Pilot</strong></legend>
+          <fieldset class="fields">
+            <label> name </label> <input type="text" name="name">
+            <label> birthdate </label> <input type="date" name="birthdate">
+            <label> species </label> <input type="text" name="species">
+      </fieldset>
+          <input class="btn" type="submit" id="addPilot" value="Add">
+          <input class="btn" type="button" value="cancel" onClick="_browse()">
+	</form> 
+</div><!-- insert -->
+<p>&nbsp;</p>
+<div id="update">
+    <form method="POST" id="UpdatePilot">
+        <legend><strong>Update Pilot</strong></legend>
+          <fieldset class="fields">
+          <input type="hidden" name="pilotID" id="updatePilotID" value="1">
+          <label> pilot_id: </label> 1
+            <label> name </label> <input type="text" name="name" value="Luke Skywalker">
+            <label> birthdate </label> <input type="date" name="birthdate" value="1981-07-26">
+            <label> species </label> <input type = "text" name="species" value="Human">
+      </fieldset>
+          <input class="btn" type="submit" id="UpdateSavePilot" value="Save">
+          <input class="btn" type="button" value="cancel" onClick="_browse()">
+	</form> 
+</div><!-- update -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form method="POST" id="deletePilot">
+      <legend><strong>Delete Pilot</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following?</p>
+          <input type="hidden" name="pilotID" id="deletepilotID" value="1">
+          <label><strong>pilot_id:</strong></label> 1
+            <label> <strong>name</strong> </label> Luke Skywalker
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeletePilot" value="Delete">
+          <input class="btn" type="button" value="cancel" onClick="_browse()">
+  </form> 
+</div><!-- delete -->
+
+</body>
+</html>
