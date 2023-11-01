@@ -1,91 +1,96 @@
--- These are some Database Manipulation queries for a partially implemented Project Website 
--- using the BoSS Project Group 5 database.
-
-
--- get all Planet IDs and Names to populate the Homeworld dropdown
-SELECT planet_id, name FROM bsg_planets
-
--- get all characters and their homeworld name for the List People page
-SELECT bsg_people.character_id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.planet_id
-
--- get a single character's data for the Update People form
-SELECT character_id, fname, lname, homeworld, age FROM bsg_people WHERE character_id = :character_ID_selected_from_browse_character_page
-
--- get all character's data to populate a dropdown for associating with a certificate  
-SELECT character_id AS pid, fname, lname FROm bsg_people 
--- get all certificates to populate a dropdown for associating with people
-SELECT certification_id AS cid, title FROM bsg_cert
-
--- get all peoople with their current associated certificates to list
-SELECT pid, cid, CONCAT(fname,' ',lname) AS name, title AS certificate 
-FROM bsg_people 
-INNER JOIN bsg_cert_people ON bsg_people.character_id = bsg_cert_people.pid 
-INNER JOIN bsg_cert on bsg_cert.certification_id = bsg_cert_people.cid 
-ORDER BY name, certificate
-
--- add a new character
-INSERT INTO bsg_people (fname, lname, homeworld, age) VALUES (:fnameInput, :lnameInput, :homeworld_id_from_dropdown_Input, :ageInput)
-
--- associate a character with a certificate (M-to-M relationship addition)
-INSERT INTO bsg_cert_people (pid, cid) VALUES (:character_id_from_dropdown_Input, :certification_id_from_dropdown_Input)
-
--- update a character's data based on submission of the Update Character form 
-UPDATE bsg_people SET fname = :fnameInput, lname= :lnameInput, homeworld = :homeworld_id_from_dropdown_Input, age= :ageInput WHERE id= :character_ID_from_the_update_form
-
--- delete a character
-DELETE FROM bsg_people WHERE id = :character_ID_selected_from_browse_character_page
-
--- dis-associate a certificate from a person (M-to-M relationship deletion)
-DELETE FROM bsg_cert_people WHERE pid = :character_ID_selected_from_certificate_and_character_list AND cid = :certification_ID_selected_from-certificate_and_character_list
-
-
-
 --
 --
---Pilots.html queries
+--pilots.html queries
 --
 --
-
 
 -- get all pilot_ids, names, brthdates, and species for List Pilots page
 SELECT * FROM Pilots;
 
-
 --add new pilot
-INSERT INTO Pilots (name, birthdate, species) VALUES (;nameInput, :birthdateInput, :speciesInput)
-
+INSERT INTO Pilots (name, birthdate, species) VALUES (:nameInput, :birthdateInput, :speciesInput)
 
 --update a Pilot
 --get a single Pilot's information for the update Pilot form
 SELECT pilot_id, name, birthdate, species FROM Pilots WHERE pilot_id = :pilot_ID_selected_from_browse_pilot_page
 --update a Pilot's information based on submission of the Update Pilot form
-UPDATE Pilots SET name = :nameInput, birthdate= :birthdateInputInput, species = :speciesInput
-
+UPDATE Pilots SET name = :nameInput, birthdate= :birthdateInput, species = :speciesInput
 
 --delete a single Pilot's information for the delete Pilot form
 DELETE FROM Pilots WHERE pilot_id = :pilot_ID_selected_from_browse_pilot_page
 
+
 --
 --
---Starships.html queries
+--starships.html queries
 --
 --
 
-
--- get all starship_, names, types, and pilot_ids for List Starships page
+-- get all starship_ids, names, types, and pilot_ids for List Starships page
 SELECT * FROM Starships;
-
 
 --add new Starship
 -- get all pilot_ids and names to populate the pilot dropdown
 SELECT pilot_id, name FROM Pilots
 --insert data for a new Starship into the Starships table
-INSERT INTO Starships (name, type, pilot_id) VALUES (;nameInput, :typeInput, :pilot_ID_Input) WHERE :pilot_ID_Input=:pilot_id_from_dropdown_Input
+INSERT INTO Starships (name, type, pilot_id) VALUES (:nameInput, :typeInput, :pilot_ID_Input) WHERE :pilot_ID_Input=:pilot_id_from_dropdown_Input
 
-
+--update a Starship
+-- get all pilot_ids and names to populate the pilot dropdown
+SELECT pilot_id, name FROM Pilots
 --get a single Starship's information for the update Starship form
-SELECT starship_id, name, type, pilot_id FROM Starships WHERE pilot_id = :pilot_ID_selected_from_browse_pilot_page
+SELECT starship_id, name, type, pilot_id FROM Starships WHERE starship_id = :starship_ID_selected_from_browse_starship_page
+--update a Starship's information based on submission of the Update Starship form
+UPDATE starship_id SET name = :nameInput, type = :typeInput, pilot_id = :pilot_id_from_dropdown_Input
 
-
---delete a single Pilot's information for the delete Pilot form
+--delete a single Starships's information for the delete Pilot form
 DELETE FROM Starships WHERE starship_id = :starship_ID_selected_from_browse_starship_page
+
+
+--
+--
+--weapon_loadouts.html queries
+--
+--
+
+-- get all weapon_ids, types, and starships_ids for List Weapon Loadouts page
+SELECT * FROM Weapon_Loadouts;
+
+--add new weapon loadout
+-- get all starship_ids and names to populate the starship dropdown
+SELECT starship_id, name FROM Starships
+--insert data for a new Weapon_Loadout into the Weapon_Loadouts table
+INSERT INTO Weapon_Loadouts (type, starship_id) VALUES (:typeInput, :starship_ID_Input) WHERE :starship_ID_Input=:starship_id_from_dropdown_Input
+
+--update a weapon loadout
+--get a single weapon loadout's information for the update weapon loadouts form
+SELECT weapon_id, type, starship_id FROM Weapon_Loadouts WHERE weapon_id = :weapon_ID_selected_from_browse_weapon_loadout_page
+--update a Starship's information based on submission of the Update Starship form
+UPDATE weapon_id SET type = :typeInput, starship_id = :starship_id_from_dropdown_Input
+
+--delete a single Starships's information for the delete Pilot form
+DELETE FROM Weapon_Loadouts WHERE weapon_id = :weapon_ID_selected_from_browse_weapon_loadout_page
+
+
+
+--
+--
+--hyperspace_routes.html queries
+--
+--
+
+-- get all route_ids and names for List Hyperspace Routes page
+SELECT * FROM Hyperspace_Routes;
+
+--add new Hyperspace Route
+--insert data for a new Weapon_Loadout into the Weapon_Loadouts table
+INSERT INTO Hyperspace_Routes (name) VALUES (:nameInput)
+
+--update a Hyperspace Route
+--get a single Hyperspace Route's information for the update weapon loadouts form
+SELECT route_id, name FROM Hyperspace_Routes WHERE route_id = :route_ID_selected_from_browse_hyperspace_routes_page
+--update a Starship's information based on submission of the Update Starship form
+UPDATE route_id SET name = :nameInput
+
+--delete a single Starships's information for the delete Pilot form
+DELETE FROM Hyperspace_Routes WHERE route_id = :route_ID_selected_from_browse_Hyperspace_Routes_page
