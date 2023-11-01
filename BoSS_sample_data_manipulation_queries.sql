@@ -94,3 +94,74 @@ UPDATE route_id SET name = :nameInput
 
 --delete a single Starships's information for the delete Pilot form
 DELETE FROM Hyperspace_Routes WHERE route_id = :route_ID_selected_from_browse_Hyperspace_Routes_page
+
+
+
+--
+--
+--planets.html queries
+--
+--
+
+-- get all planet_ids, names, regions for List Planets page
+SELECT * FROM Hyperspace_Routes;
+
+--add new Planet
+--insert data for a new Planet
+INSERT INTO Planets (name, region) VALUES (:nameInput, :regionInput)
+
+--update a Planet
+--get a single Hyperspace Route's information for the update weapon loadouts form
+SELECT planet_id, name, region FROM Planets WHERE planet_id = :planet_ID_selected_from_browse_Planets_page
+--update a Planet's information based on submission of the Update Planet form
+UPDATE planet_id, name, region SET name = :nameInput, region = :regionInput
+
+--delete a single Planet's information for the delete Pilot form
+DELETE FROM Planets WHERE planet_id = :planet_ID_selected_from_browse_Planets_page
+
+
+--
+--
+--starship_route_permits.html queries
+--
+--
+
+-- get all permit_ids, starship_ids, route_ids, and date_permits for List Starship Route Permits page
+SELECT * FROM Starship_Route_Permits;
+
+--add Starship Route Permit
+-- get all starship_ids and names to populate the starship dropdown
+SELECT starship_id, name FROM Starships
+-- get all route_ids and names to populate the Hyperspace Routes dropdown
+SELECT route_id, name FROM Hyperspace_Routes
+--insert data for a new Starship Route Permit
+INSERT INTO Starship_Route_Permits (starship_id, route_id, date_permit) VALUES (:starship_ID_Input, hyperspace_route_ID_input, :dateInput) WHERE :starship_ID_Input=:starship_id_from_dropdown_Input, hyperspace_route_ID_input = :hyperspace_route_ID_from_dropdown_Input
+
+
+--update a Starship Route Permit
+--get a single Starship Route Permit's information for the update Starship Route Permit form
+SELECT permit_id, starship_id, route_id, date_permit FROM Starship_Route_Permits WHERE permit_id = :permit_id_selected_from_browse_permits_page
+--update a Starship's information based on submission of the Update Starship form
+UPDATE permit_id SET starship_id = :starship_id_from_dropdown_Input, route_id = route_id_from_dropdown_Input, date_permit = :date_Input
+
+--delete a single Starships's information for the delete Pilot form
+DELETE FROM Starship_Route_Permits WHERE permit_id = :permit_ID_selected_from_browse_permits_page
+
+
+
+--
+--
+--planets_in_routes.html queries
+--
+--
+
+-- get all permit_ids, starship_ids, route_ids, and date_permits for List Starship Route Permits page
+SELECT * FROM Planets_In_Routes;
+
+--add Planet in Route
+-- get all planet_ids and names to populate the Planet dropdown
+SELECT planet_id, name FROM Planets
+-- get all route_ids and names to populate the Hyperspace Routes dropdown
+SELECT route_id, name FROM Hyperspace_Routes
+--insert data for a new Starship Route Permit
+INSERT INTO Planets_In_Routes (planet_id, route_id) VALUES (:planet_ID_Input, hyperspace_route_ID_input, :dateInput) WHERE :planet_ID_Input=:planet_id_from_dropdown_Input, hyperspace_route_ID_input = :hyperspace_route_ID_from_dropdown_Input
