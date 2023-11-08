@@ -129,7 +129,9 @@ DELETE FROM Planets WHERE planet_id = :planet_ID_selected_from_browse_Planets_pa
 --
 
 -- get all permit_ids, starship_ids, route_ids, and date_permits for List Starship Route Permits page
-SELECT * FROM Starship_Route_Permits;
+SELECT Starship_Route_Permits.permit_id AS "Permit ID", Starships.name AS "Starship", Hyperspace_Routes.name AS "Hyperspace Route", Starship_Route_Permits.date_permit AS "Date of Permit" 
+FROM Starship_Route_Permits JOIN Starships ON Starship_Route_Permits.starship_id = Starships.starship_id 
+JOIN Hyperspace_Routes ON Starship_Route_Permits.route_id = Hyperspace_Routes.route_id;
 
 --add Starship Route Permit
 -- get all starship_ids and names to populate the starship dropdown
