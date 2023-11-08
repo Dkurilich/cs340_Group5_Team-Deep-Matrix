@@ -26,8 +26,9 @@ DELETE FROM Pilots WHERE pilot_id = :pilot_ID_selected_from_browse_pilot_page
 --
 --
 
--- get all starship_ids, names, types, and pilot_ids for List Starships page
-SELECT * FROM Starships;
+-- get all starship_ids, names, types, and pilots for List Starships page
+SELECT Starships.starship_id AS "Starship ID", Starships.name AS "Name", Starships.type AS "Type", Pilots.name AS "Pilot" 
+FROM Starships JOIN Pilots ON Starships.pilot_id = Pilots.pilot_id;
 
 --add new Starship
 -- get all pilot_ids and names to populate the pilot dropdown
