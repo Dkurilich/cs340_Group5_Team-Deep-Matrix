@@ -4,27 +4,11 @@
 <link href="style.css" rel="stylesheet" type="text/css" />
 <script language="JavaScript">
 		function showform(dowhat) {
-			/*
-			* four DIVS: browse, insert, update, delete
-			* this function sets one visible the others not
-			*/
 			if (dowhat == 'insert'){
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'block';
 				document.getElementById('update').style.display = 'none';
 				document.getElementById('delete').style.display = 'none';
-			}
-			else if (dowhat == 'update'){
-				document.getElementById('browse').style.display = 'none';
-				document.getElementById('insert').style.display = 'none';
-				document.getElementById('update').style.display = 'block';
-				document.getElementById('delete').style.display = 'none';
-			}
-			else if (dowhat == 'delete'){
-				document.getElementById('browse').style.display = 'none';
-				document.getElementById('insert').style.display = 'none';
-				document.getElementById('update').style.display = 'none';
-				document.getElementById('delete').style.display = 'block';
 			}
 			else { //by default display browse
 				document.getElementById('browse').style.display = 'block';
@@ -34,8 +18,6 @@
 			}
 		}
     function _new() { showform('insert'); }
-    function _update(pid) { showform('update'); }
-    function _delete(pid) { showform ('delete'); }
     function _browse() { showform ('browse'); }
 </script>
 </head>
@@ -53,36 +35,26 @@
     <th>planet_route_id</th>
     <th>planet_id</th>
     <th>route_id</th>
-    <th></th>
-    <th></th>
   </tr>
   <tr>
     <td align="right" >1</td>
     <td align="right">1</td>
     <td align="right">1</td>
-    <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
-    <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
   </tr>
   <tr>
     <td align="right" >2</td>
     <td align="right">2</td>
     <td align="right">1</td>
-    <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
-    <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
   </tr>
   <tr>
     <td align="right" >3</td>
     <td align="right">2</td>
     <td align="right">2</td>
-    <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
-    <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
   </tr>
   <tr>
     <td align="right" >4</td>
     <td align="right">3</td>
     <td align="right">3</td>
-    <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
-    <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
   </tr>
 </table>
 
@@ -113,46 +85,6 @@
           <input class="btn" type="button" value="cancel" onClick="_browse()">
 	</form> 
 </div><!-- insert -->
-<p>&nbsp;</p>
-<div id="update">
-    <form method="POST" id="UpdatePlanetInRoute">
-        <legend><strong>Update Planets in Routes</strong></legend>
-          <fieldset class="fields">
-          <input type="hidden" name="planetRouteID" id="updateplanetRouteID" value="1">
-          <label> planet_route_id: </label> 1
-            <label> planet </label> <select name="planet">
-            	<option value="0">&nbsp;</option>
-                <option value="1" selected>Coruscant</option>
-                <option value="2">Corellia</option>
-                <option value="3">Kal'Shebbol</option>
-                </select>
-            <label> route </label> <select name="route">
-            	<option value="0">&nbsp;</option>
-                <option value="1" selected>Corellian Run</option>
-                <option value="2">Corellian Trade Spine</option>
-                <option value="3">Rimma Trade Route</option>
-                </select>
-      </fieldset>
-          <input class="btn" type="submit" id="UpdateSavePlanetInRoute" value="Save">
-          <input class="btn" type="button" value="cancel" onClick="_browse()">
-	</form> 
-</div><!-- update -->
-<p>&nbsp;</p>
-<div id="delete" style="display: block">
-  <form method="POST" id="deletePlanetInRoute">
-      <legend><strong>Delete Planet In Route</strong></legend>
-          <fieldset class="fields">
-          <p>Are you sure you wish to delete the following?</p>
-          <input type="hidden" name="planetRouteID" id="deletePlanetRouteID" value="1">
-          <label><strong>planet_route_id:</strong></label> 1
-            <label> <strong>planet</strong> </label> Coruscant
-            <label> <strong>route</strong> </label> Corellian Run
-            
-    </fieldset>
-    <input class="btn" type="submit" id="DeletePlanetInRoute" value="Delete">
-          <input class="btn" type="button" value="cancel" onClick="_browse()">
-  </form> 
-</div><!-- delete -->
 
 </body>
 </html>
