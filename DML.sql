@@ -55,7 +55,8 @@ DELETE FROM Starships WHERE starship_id = :starship_ID_selected_from_browse_star
 --
 
 -- get all weapon_ids, types, and starships_ids for List Weapon Loadouts page
-SELECT * FROM Weapon_Loadouts;
+SELECT Weapon_Loadouts.weapon_id AS "Weapon ID", Weapon_Loadouts.type AS "Type", Starships.name AS "Starship" 
+FROM Weapon_Loadouts JOIN Starships ON Weapon_Loadouts.starship_id = Starships.starship_id;
 
 --add new weapon loadout
 -- get all starship_ids and names to populate the starship dropdown
