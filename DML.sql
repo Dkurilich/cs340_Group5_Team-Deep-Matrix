@@ -34,7 +34,7 @@ FROM Starships JOIN Pilots ON Starships.pilot_id = Pilots.pilot_id;
 -- get all pilot_ids and names to populate the pilot dropdown
 SELECT pilot_id, name FROM Pilots;
 --insert data for a new Starship into the Starships table
-INSERT INTO Starships (name, type, pilot_id) VALUES (:nameInput, :typeInput, :pilot_ID_Input) WHERE :pilot_ID_Input=:pilot_id_from_dropdown_Input;
+INSERT INTO Starships (name, type, pilot_id) VALUES (:nameInput, :typeInput, :pilot_id_from_dropdown_Input);
 
 --update a Starship
 -- get all pilot_ids and names to populate the pilot dropdown
@@ -62,7 +62,7 @@ FROM Weapon_Loadouts JOIN Starships ON Weapon_Loadouts.starship_id = Starships.s
 -- get all starship_ids and names to populate the starship dropdown
 SELECT starship_id, name FROM Starships;
 --insert data for a new Weapon_Loadout into the Weapon_Loadouts table
-INSERT INTO Weapon_Loadouts (type, starship_id) VALUES (:typeInput, :starship_ID_Input) WHERE :starship_ID_Input=:starship_id_from_dropdown_Input;
+INSERT INTO Weapon_Loadouts (type, starship_id) VALUES (:typeInput, :starship_id_from_dropdown_Input);
 
 --update a weapon loadout
 --get a single weapon loadout's information for the update weapon loadouts form
@@ -139,7 +139,7 @@ SELECT starship_id, name FROM Starships;
 -- get all route_ids and names to populate the Hyperspace Routes dropdown
 SELECT route_id, name FROM Hyperspace_Routes;
 --insert data for a new Starship Route Permit
-INSERT INTO Starship_Route_Permits (starship_id, route_id, date_permit) VALUES (:starship_ID_Input, hyperspace_route_ID_input, :dateInput) WHERE :starship_ID_Input=:starship_id_from_dropdown_Input, hyperspace_route_ID_input = :hyperspace_route_ID_from_dropdown_Input;
+INSERT INTO Starship_Route_Permits (starship_id, route_id, date_permit) VALUES (:starship_id_from_dropdown_Input, :hyperspace_route_ID_from_dropdown_Input, :dateInput);
 
 
 --update a Starship Route Permit

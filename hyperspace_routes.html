@@ -14,18 +14,6 @@
 				document.getElementById('update').style.display = 'none';
 				document.getElementById('delete').style.display = 'none';
 			}
-			else if (dowhat == 'update'){
-				document.getElementById('browse').style.display = 'none';
-				document.getElementById('insert').style.display = 'none';
-				document.getElementById('update').style.display = 'block';
-				document.getElementById('delete').style.display = 'none';
-			}
-			else if (dowhat == 'delete'){
-				document.getElementById('browse').style.display = 'none';
-				document.getElementById('insert').style.display = 'none';
-				document.getElementById('update').style.display = 'none';
-				document.getElementById('delete').style.display = 'block';
-			}
 			else { //by default display browse
 				document.getElementById('browse').style.display = 'block';
 				document.getElementById('insert').style.display = 'none';
@@ -52,26 +40,18 @@
   <tr>
     <th>route_id</th>
     <th>name</th>
-    <th></th>
-    <th></th>
   </tr>
   <tr>
     <td align="right" >1</td>
     <td >Corellian Run</td>
-    <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
-    <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
   </tr>
   <tr>
     <td align="right" >2</td>
     <td>Corellian Trade Spine</td>
-    <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
-    <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
   </tr>
   <tr>
     <td align="right">3</td>
     <td>Rimma Trade Route</td>
-    <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
-    <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
   </tr>
 </table>
 
@@ -86,39 +66,12 @@
         <legend><strong>Add Hyperspace Route</strong></legend>
           <fieldset class="fields">
             <label> name </label> <input type="text" name="name">
+            <label> Planet </label> <input type="text" name="name">
       </fieldset>
           <input class="btn" type="submit" id="addRoute" value="Add">
           <input class="btn" type="button" value="cancel" onClick="_browse()">
 	</form> 
 </div><!-- insert -->
 <p>&nbsp;</p>
-<div id="update">
-    <form method="POST" id="UpdateRoute">
-        <legend><strong>Update Hyperspace Route</strong></legend>
-          <fieldset class="fields">
-          <input type="hidden" name="routeID" id="updateRouteID" value="1">
-          <label> route_id: </label> 1
-            <label> name </label> <input type="text" name="name" value="Corellian Run">
-      </fieldset>
-          <input class="btn" type="submit" id="UpdateSaveRoute" value="Save">
-          <input class="btn" type="button" value="cancel" onClick="_browse()">
-	</form> 
-</div><!-- update -->
-<p>&nbsp;</p>
-<div id="delete" style="display: block">
-  <form method="POST" id="deleteRoute">
-      <legend><strong>Delete Hyperspace Route</strong></legend>
-          <fieldset class="fields">
-          <p>Are you sure you wish to delete the following?</p>
-          <input type="hidden" name="routeID" id="deleteRouteID" value="1">
-          <label><strong>route_id:</strong></label> 1
-            <label> <strong>name</strong> </label> Corellian Run
-            
-    </fieldset>
-    <input class="btn" type="submit" id="DeleteRoute" value="Delete">
-          <input class="btn" type="button" value="cancel" onClick="_browse()">
-  </form> 
-</div><!-- delete -->
-
 </body>
 </html>

@@ -14,18 +14,7 @@
 				document.getElementById('update').style.display = 'none';
 				document.getElementById('delete').style.display = 'none';
 			}
-			else if (dowhat == 'update'){
-				document.getElementById('browse').style.display = 'none';
-				document.getElementById('insert').style.display = 'none';
-				document.getElementById('update').style.display = 'block';
-				document.getElementById('delete').style.display = 'none';
-			}
-			else if (dowhat == 'delete'){
-				document.getElementById('browse').style.display = 'none';
-				document.getElementById('insert').style.display = 'none';
-				document.getElementById('update').style.display = 'none';
-				document.getElementById('delete').style.display = 'block';
-			}
+
 			else { //by default display browse
 				document.getElementById('browse').style.display = 'block';
 				document.getElementById('insert').style.display = 'none';
@@ -54,32 +43,28 @@
     <th>Name</th>
     <th>Type</th>
     <th>Pilot</th>
-    <th></th>
-    <th></th>
+
   </tr>
   <tr>
     <td align="right" >1</td>
     <td >Millennium Falcon</td>
     <td >Freighter</td>
     <td align="right">Han Solo</td>
-    <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
-    <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
+
   </tr>
   <tr>
     <td align="right" >2</td>
     <td>Cool Ship</td>
     <td >Starfighter</td>
     <td align="right">Ahsoka Tano</td>
-    <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
-    <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
+
   </tr>
   <tr>
     <td align="right">3</td>
     <td>Boring Ship</td>
     <td >Freighter</td>
     <td align="right">Ahsoka Tano</td>
-    <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
-    <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
+
   </tr>
 </table>
 
@@ -107,40 +92,7 @@
 	</form> 
 </div><!-- insert -->
 <p>&nbsp;</p>
-<div id="update">
-    <form method="POST" id="UpdateStarship">
-        <legend><strong>Update Starship</strong></legend>
-          <fieldset class="fields">
-          <input type="hidden" name="starshipID" id="updateStarshipID" value="1">
-          <label> starship_id: </label> 1
-            <label> name </label> <input type="text" name="name" value="Millennium Falcon">
-            <label> type </label> <input type="text" name="type" value="Freighter">
-            <label> pilot </label> <select name="pilot">
-            	<option value="0">&nbsp;</option>
-                <option value="1">Luke Skywalker</option>
-                <option value="2" selected>Han Solo</option>
-                <option value="3">Ahsoka Tano</option>
-                </select>
-      </fieldset>
-          <input class="btn" type="submit" id="UpdateSaveStarship" value="Save">
-          <input class="btn" type="button" value="cancel" onClick="_browse()">
-	</form> 
-</div><!-- update -->
-<p>&nbsp;</p>
-<div id="delete" style="display: block">
-  <form method="POST" id="deleteStarship">
-      <legend><strong>Delete Starship</strong></legend>
-          <fieldset class="fields">
-          <p>Are you sure you wish to delete the following?</p>
-          <input type="hidden" name="starshipID" id="deletestarshipID" value="1">
-          <label><strong>starship_id:</strong></label> 1
-            <label> <strong>name</strong> </label> Millennium Falcon
-            
-    </fieldset>
-    <input class="btn" type="submit" id="DeleteStarship" value="Delete">
-          <input class="btn" type="button" value="cancel" onClick="_browse()">
-  </form> 
-</div><!-- delete -->
+
 
 </body>
 </html>

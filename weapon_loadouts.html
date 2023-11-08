@@ -14,18 +14,6 @@
 				document.getElementById('update').style.display = 'none';
 				document.getElementById('delete').style.display = 'none';
 			}
-			else if (dowhat == 'update'){
-				document.getElementById('browse').style.display = 'none';
-				document.getElementById('insert').style.display = 'none';
-				document.getElementById('update').style.display = 'block';
-				document.getElementById('delete').style.display = 'none';
-			}
-			else if (dowhat == 'delete'){
-				document.getElementById('browse').style.display = 'none';
-				document.getElementById('insert').style.display = 'none';
-				document.getElementById('update').style.display = 'none';
-				document.getElementById('delete').style.display = 'block';
-			}
 			else { //by default display browse
 				document.getElementById('browse').style.display = 'block';
 				document.getElementById('insert').style.display = 'none';
@@ -53,29 +41,21 @@
     <th>Weapon Id</th>
     <th>Type</th>
     <th>Starship Id</th>
-    <th></th>
-    <th></th>
   </tr>
   <tr>
     <td align="right" >1</td>
     <td >Turbolaser</td>
     <td align="right">Millennium Falcon</td>
-    <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
-    <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
   </tr>
   <tr>
     <td align="right" >2</td>
     <td>Turbolaser</td>
     <td align="right">Cool Ship</td>
-    <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
-    <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
   </tr>
   <tr>
     <td align="right">3</td>
     <td>Flare</td>
     <td align="right">Cool Ship</td>
-    <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
-    <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
   </tr>
 </table>
 
@@ -102,39 +82,7 @@
 	</form> 
 </div><!-- insert -->
 <p>&nbsp;</p>
-<div id="update">
-    <form method="POST" id="UpdateWeaponLoadout">
-        <legend><strong>Update Weapon</strong></legend>
-          <fieldset class="fields">
-          <input type="hidden" name="weaponID" id="updateWeaponID" value="1">
-          <label> weapon_id: </label> 1
-            <label> type </label> <input type="text" name="type" value="Turbolaser">
-            <label> starship </label> <select name="starship">
-            	<option value="0">&nbsp;</option>
-                <option value="1" selected>Millennium Falcon</option>
-                <option value="2">Cool Ship</option>
-                <option value="3">Boring Ship</option>
-                </select>
-      </fieldset>
-          <input class="btn" type="submit" id="UpdateSaveWeapon" value="Save">
-          <input class="btn" type="button" value="cancel" onClick="_browse()">
-	</form> 
-</div><!-- update -->
-<p>&nbsp;</p>
-<div id="delete" style="display: block">
-  <form method="POST" id="deleteWeapon">
-      <legend><strong>Delete Weapon</strong></legend>
-          <fieldset class="fields">
-          <p>Are you sure you wish to delete the following?</p>
-          <input type="hidden" name="weaponID" id="deleteWeaponID" value="1">
-          <label><strong>weapon_id:</strong></label> 1
-            <label> <strong>type</strong> </label> Turbolaser
-            
-    </fieldset>
-    <input class="btn" type="submit" id="DeleteWeapon" value="Delete">
-          <input class="btn" type="button" value="cancel" onClick="_browse()">
-  </form> 
-</div><!-- delete -->
+
 
 </body>
 </html>
