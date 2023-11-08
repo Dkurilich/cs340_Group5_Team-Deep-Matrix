@@ -36,7 +36,7 @@ CREATE OR REPLACE TABLE Starships (
     type varchar(255) NOT NULL,
     pilot_id int(11),
     PRIMARY KEY (starship_id),
-    FOREIGN KEY(pilot_id) REFERENCES Pilots(pilot_id) ON DELETE CASCADE
+    FOREIGN KEY(pilot_id) REFERENCES Pilots(pilot_id) ON DELETE SET NULL
 );
 
 -- create (or replace) Weapon_Loadouts table
