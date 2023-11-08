@@ -34,7 +34,7 @@ CREATE OR REPLACE TABLE Starships (
     starship_id int(11) NOT NULL AUTO_INCREMENT,
     name varchar(255) NOT NULL,
     type varchar(255) NOT NULL,
-    pilot_id int(11) NOT NULL,
+    pilot_id int(11),
     PRIMARY KEY (starship_id),
     FOREIGN KEY(pilot_id) REFERENCES Pilots(pilot_id) ON DELETE CASCADE
 );
