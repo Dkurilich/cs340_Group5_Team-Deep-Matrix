@@ -104,7 +104,7 @@ DELETE FROM Hyperspace_Routes WHERE route_id = :route_ID_selected_from_browse_Hy
 --
 
 -- get all planet_ids, names, regions for List Planets page
-SELECT * FROM Hyperspace_Routes;
+SELECT * FROM Planets;
 
 --add new Planet
 --insert data for a new Planet
