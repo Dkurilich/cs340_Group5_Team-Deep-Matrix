@@ -5,7 +5,7 @@
 --
 
 -- get all pilot_ids, names, brthdates, and species for List Pilots page
-SELECT * FROM Pilots;
+SELECT Pilots.pilot_id AS "Pilot ID", Pilots.name AS "Name", Pilots.birthdate AS "Birthdate", Pilots.species AS "Species" FROM Pilots;
 
 --add new pilot
 INSERT INTO Pilots (name, birthdate, species) VALUES (:nameInput, :birthdateInput, :speciesInput);
@@ -70,7 +70,7 @@ INSERT INTO Weapon_Loadouts (type, starship_id) VALUES (:typeInput, :starship_id
 --
 
 -- get all route_ids and names for List Hyperspace Routes page
-SELECT * FROM Hyperspace_Routes;
+SELECT Hyperspace_Routes.route_id AS "Hyperspace Route ID", Hyperspace_Routes.name AS "Name" FROM Hyperspace_Routes;
 
 --add new Hyperspace Route
 --insert data for a new Weapon_Loadout into the Weapon_Loadouts table
@@ -88,7 +88,7 @@ INSERT INTO Planets_In_Routes (planet_id, route_id) VALUES (:planet_ID_Input, :h
 --
 
 -- get all planet_ids, names, regions for List Planets page
-SELECT * FROM Planets;
+SELECT Planets.planet_id AS "Planet ID", Planets.name AS "Name", Planets.region AS "Region" FROM Planets;
 
 --add new Planet
 --insert data for a new Planet
