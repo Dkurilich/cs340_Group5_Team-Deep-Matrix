@@ -1,0 +1,146 @@
+{{!-- Just some plain text --}}
+
+<h1>Pilots</h1>
+
+[ <a href="index.html">Homepage</a> | <a href="pilots.html">Pilots</a> | <a href="starships.html">Starships</a> | <a href="weapon_loadouts.html">Weapon Loadouts</a> | <a href="hyperspace_routes.html">Hyperspace Routes</a> |  <a href="planets.html">Planets</a> | <a href="starship_route_permits.html">Starship Route Permits</a> | <a href="planets_in_routes.html">Planets In Routes</a> ]
+<link href="style.css" rel="stylesheet" type="text/css" />
+
+<script language="JavaScript">
+		function showform(dowhat) {
+			/*
+			* four DIVS: browse, insert, update, delete
+			* this function sets one visible the others not
+			*/
+			if (dowhat == 'insert'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'update'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'delete'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'block';
+			}
+			else { //by default display browse
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+		}
+    function _new() { showform('insert'); }
+    function _update(pid) { showform('update'); }
+    function _delete(pid) { showform ('delete'); }
+    function _browse() { showform ('browse'); }
+</script>
+<div id="browse">
+<p>&nbsp;</p>
+
+{{!-- The Data from our Database --}}
+
+{{!-- Create a table --}}
+<table border="1" cellpadding="5" >
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the pilot_id, name, birthdate, species, in order --}}
+        {{#each data}}
+        <tr>
+            <td align="center" >{{this.pilot_id}}</td>
+            <td align="right" >{{this.name}}</td>
+            <td align="right" >{{this.birthdate}}</td>
+            <td align="right" >{{this.species}}</td>
+            <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
+            <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<input class="btn" type="button" onClick="_new()" value="New">
+<p>&nbsp;</p>
+</div> <!-- browse -->
+
+
+{{!-- Insert a new pilot --}}
+
+<div id="insert">
+    <p>&nbsp;</p>
+    <form method="POST" id="add-pilot-form" action="/add-pilot-form">
+        <legend><strong>Add Pilot</strong></legend>
+          <fieldset class="fields">
+            <label for="input-name"> name </label> <input type="text" name="input-name" id="input-name">
+            <label for="input-birthdate"> birthdate </label> <input type="date" name="input-birthdate" id="input-birthdate">
+            <label for="input-species"> species </label> <input type="text" name="input-species" id="input-species">
+      </fieldset>
+          <input class="btn" type="submit" id="addPilot" value="Add">
+          <input class="btn" type="button" value="cancel" onClick="_browse()">
+	</form> 
+</div><!-- insert -->
+<p>&nbsp;</p>
+
+
+
+
+{{!-- Update a  pilot --}}
+
+<div id="update">
+    <form method="POST" id="UpdatePilot">
+        <legend><strong>Update Pilot</strong></legend>
+          <fieldset class="fields">
+          <input type="hidden" name="pilotID" id="updatePilotID" value="1">
+          <label> pilot_id: </label> 1
+            <label> name </label> <input type="text" name="name" value="Luke Skywalker">
+            <label> birthdate </label> <input type="text" name="birthdate" value="1981-07-26">
+            <label> species </label> <input type = "text" name="species" value="Human">
+      </fieldset>
+          <input class="btn" type="submit" id="UpdateSavePilot" value="Save">
+          <input class="btn" type="button" value="cancel" onClick="_browse()">
+	</form> 
+</div><!-- update -->
+<p>&nbsp;</p>
+
+
+
+{{!-- Delete a  pilot --}}
+<div id="delete" style="display: block">
+  <form method="POST" id="deletePilot">
+      <legend><strong>Delete Pilot</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following?</p>
+          <input type="hidden" name="pilotID" id="deletepilotID" value="1">
+          <label><strong>pilot_id:</strong></label> 1
+            <label> <strong>name</strong> </label> Luke Skywalker    
+    </fieldset>
+    <input class="btn" type="submit" id="DeletePilot" value="Delete">
+          <input class="btn" type="button" value="cancel" onClick="_browse()">
+  </form> 
+</div><!-- delete -->
+
+
+
