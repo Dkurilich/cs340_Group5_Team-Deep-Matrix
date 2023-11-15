@@ -31,7 +31,7 @@ var db = require('./db-connector')
 // view data from Pilots Table
 app.get('/', function(req, res)
     {  
-        let query1 = "SELECT * FROM Pilots;";               // Define our query
+        let query1 = "SELECT pilot_id,name,birthdate,species FROM Pilots;";      // Define our query
 
         db.pool.query(query1, function(error, rows, fields){    // Execute the query
 
@@ -70,6 +70,7 @@ app.post('/add-pilot-form', function(req, res){
         }
     })
 })
+
 
 
 /*
