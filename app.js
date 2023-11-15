@@ -26,16 +26,26 @@ var db = require('./db-connector')
     ROUTES
 */
 // app.js
+// connect webpages 
+app.get("/", function(req, res){
+    return res.render('index')
+  });
+  app.get("/index.html", function(req, res){
+    return res.render('index')
+  });
 
+//   app.get("/pilots.html", function(req, res){
+//     return res.render('pilots')
+//   });
 
 // view data from Pilots Table
-app.get('/', function(req, res)
+app.get('/pilots.html', function(req, res)
     {  
-        let query1 = "SELECT pilot_id,name,birthdate,species FROM Pilots;";      // Define our query
+        let query1 = "SELECT pilot_id,name,birthdate,species FROM Pilots;";               // Define our query
 
         db.pool.query(query1, function(error, rows, fields){    // Execute the query
 
-            res.render('index', {data: rows});                  // Render the index.hbs file, and also send the renderer
+            res.render('pilots', {data: rows});                  // Render the index.hbs file, and also send the renderer
         })                                                      // an object where 'data' is equal to the 'rows' we
     });                                                         // received back from the query
 
@@ -66,7 +76,7 @@ app.post('/add-pilot-form', function(req, res){
         // presents it on the screen
         else
         {
-            res.redirect('/');
+            res.redirect('/pilots.html');
         }
     })
 })
