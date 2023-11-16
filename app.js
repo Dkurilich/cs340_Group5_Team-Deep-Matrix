@@ -148,6 +148,76 @@ app.post('/add-starship-form', function(req, res){
 })
 
 
+// view data from Starships Table
+app.get('/starship_route_permits.html', function(req, res){  
+
+    let query1 = "SELECT * FROM Starship_Route_Permits"
+    let query2 = "SELECT * From Starships;"
+    let query3 = "SELECT * FROM Hyperspace_Routes"     ;
+
+           db.pool.query(query1, function(error, rows, fields){    // Execute the query
+               let permits = rows
+   
+               db.pool.query(query2, (error, rows, fields) => {
+                   let starships = rows
+                   let starshipmap = {}
+                   starships.map(starship => {
+                       let id = parseInt(starship.starship_id, 10);
+                       starshipmap[id] = starship["name"];
+                   })
+                   permits = permits.map(permit => {
+                       return Object.assign(permit, {starship_id: starshipmap[permit.starship_id]})
+                   })
+
+                db.pool.query(query3, (error, rows, fields) => {
+                    let routes = rows
+                    let routemap = {}
+                    routes.map(route => {
+                        let id = parseInt(route.route_id, 10);
+                        routemap[id] = route["name"];
+                    })
+                    permits = permits.map(permit => {
+                        return Object.assign(permit, {route_id: routemap[permit.route_id]})
+                    })
+
+            res.render('starship_route_permits', {data: permits, starships: starships, routes: routes}); 
+}) // close query 3
+}) // close query 2
+}) // close query 1
+});  
+
+
+// add new permit
+
+app.post('/add-permit-form', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Capture NULL values
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Starship_Route_Permits (starship_id, route_id) VALUES ('${data['input-starship']}', '${data['input-route']}')`;
+ 
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/starship_route_permits.html');
+        }
+    })
+})
+
+
 
 /*
     LISTENER
