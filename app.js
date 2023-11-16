@@ -81,6 +81,72 @@ app.post('/add-pilot-form', function(req, res){
     })
 })
 
+// view data from Starships Table
+app.get('/starships.html', function(req, res){  
+        
+    let query1 = "SELECT * FROM Starships;";
+
+    let query2= "SELECT * From Pilots;";
+
+        db.pool.query(query1, function(error, rows, fields){    // Execute the query
+
+            let starships = rows
+
+            db.pool.query(query2, (error, rows, fields) => {
+
+                let pilots = rows
+
+                let pilotmap = {}
+                pilots.map(pilot => {
+                    let id = parseInt(pilot.pilot_id, 10);
+    
+                    pilotmap[id] = pilot["name"];
+                })
+    
+                // Overwrite the pilot ID with the name of the planet in the people object
+                starships = starships.map(starship => {
+                    return Object.assign(starship, {pilot_id: pilotmap[starship.pilot_id]})
+                })
+    
+                // END OF NEW CODE
+    
+
+
+            res.render('starships', {data: starships, pilots: pilots});          // Render the starships.hbs file, and also send the renderer
+        })                                                     
+    })
+});    
+
+// add new starship
+
+app.post('/add-starship-form', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Capture NULL values
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Starships (name, type, pilot_id) VALUES ('${data['input-name']}', '${data['input-type']}', '${data['input-pilot']}')`;
+ 
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/starships.html');
+        }
+    })
+})
+
 
 
 /*
