@@ -1,0 +1,88 @@
+<html>
+<head>
+<title>Weapon Loadouts</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript">
+		function showform(dowhat) {
+			/*
+			* four DIVS: browse, insert, update, delete
+			* this function sets one visible the others not
+			*/
+			if (dowhat == 'insert'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else { //by default display browse
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+		}
+    function _new() { showform('insert'); }
+    function _update(pid) { showform('update'); }
+    function _delete(pid) { showform ('delete'); }
+    function _browse() { showform ('browse'); }
+</script>
+</head>
+
+<body onload="_browse()">
+<h1>Weapon Loadouts</h1>
+
+[ <a href="index.html">Homepage</a> | <a href="pilots.html">Pilots</a> | <a href="starships.html">Starships</a> | <a href="weapon_loadouts.html">Weapon Loadouts</a> | <a href="hyperspace_routes.html">Hyperspace Routes</a> |  <a href="planets.html">Planets</a> | <a href="starship_route_permits.html">Starship Route Permits</a> | <a href="planets_in_routes.html">Planets In Routes</a> ]
+
+<div id="browse">
+<p>&nbsp;</p>
+
+<table border="1" cellpadding="5">
+  <tr>
+    <th>Weapon Id</th>
+    <th>Type</th>
+    <th>Starship</th>
+  </tr>
+  <tr>
+    <td align="right" >1</td>
+    <td >Turbolaser</td>
+    <td align="right">Millennium Falcon</td>
+  </tr>
+  <tr>
+    <td align="right" >2</td>
+    <td>Turbolaser</td>
+    <td align="right">Cool Ship</td>
+  </tr>
+  <tr>
+    <td align="right">3</td>
+    <td>Flare</td>
+    <td align="right">Cool Ship</td>
+  </tr>
+</table>
+
+<input class="btn" type="button" onClick="_new()" value="New">
+<p>&nbsp;</p>
+</div> <!-- browse -->
+
+<div id="insert">
+    <p>&nbsp;</p>
+
+    <form method="POST" id="addNewWeapon">
+        <legend><strong>Add Weapon</strong></legend>
+          <fieldset class="fields">
+            <label> type </label> <input type="text" name="type">
+            <label> starship </label>  <select name="starship">
+            	<option value="0" selected>&nbsp;</option>
+                <option value="1">Millennium Falcon</option>
+                <option value="2">Cool Ship</option>
+                <option value="3">Boring Ship</option>
+                </select>
+      </fieldset>
+          <input class="btn" type="submit" id="addWeapon" value="Add">
+          <input class="btn" type="button" value="cancel" onClick="_browse()">
+	</form> 
+</div><!-- insert -->
+<p>&nbsp;</p>
+
+
+</body>
+</html>

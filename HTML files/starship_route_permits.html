@@ -1,0 +1,165 @@
+<html>
+<head>
+<title>Starship Route Permits</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript">
+		function showform(dowhat) {
+			/*
+			* four DIVS: browse, insert, update, delete
+			* this function sets one visible the others not
+			*/
+			if (dowhat == 'insert'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'update'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'delete'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'block';
+			}
+			else { //by default display browse
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+		}
+    function _new() { showform('insert'); }
+    function _update(pid) { showform('update'); }
+    function _delete(pid) { showform ('delete'); }
+    function _browse() { showform ('browse'); }
+</script>
+</head>
+
+<body onload="_browse()">
+<h1>Starship Route Permits</h1>
+
+[ <a href="index.html">Homepage</a> | <a href="pilots.html">Pilots</a> | <a href="starships.html">Starships</a> | <a href="weapon_loadouts.html">Weapon Loadouts</a> | <a href="hyperspace_routes.html">Hyperspace Routes</a> |  <a href="planets.html">Planets</a> | <a href="starship_route_permits.html">Starship Route Permits</a> | <a href="planets_in_routes.html">Planets In Routes</a> ]
+
+<div id="browse">
+<p>&nbsp;</p>
+
+<table border="1" cellpadding="5">
+  <tr>
+    <th>Permit ID</th>
+    <th>Starship</th>
+    <th>Hyperspace Route</th>
+    <th>Date of Permit</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr>
+    <td align="right" >1</td>
+    <td align="right">Millennium Falcon</td>
+    <td align="right">Corellian Run</td>
+    <td align="right" >1990-10-25</td>
+    <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
+    <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
+  </tr>
+  <tr>
+    <td align="right" >2</td>
+    <td align="right">Boring Ship</td>
+    <td align="right">Corellian Run</td>
+    <td align="right" >1995-01-01</td>
+    <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
+    <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
+  </tr>
+  <tr>
+    <td align="right" >3</td>
+    <td align="right">Boring Ship</td>
+    <td align="right">Corellian Trade Spine</td>
+    <td align="right" >1997-11-28</td>
+    <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
+    <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
+  </tr>
+  <tr>
+    <td align="right" >4</td>
+    <td align="right">Boring Ship</td>
+    <td align="right">Rimma Trade Route</td>
+    <td align="right" >1998-02-09</td>
+    <td><a href="#" onClick="_update('this.ID')">Edit</a></td>
+    <td><a href="#" onclick="_delete('this.ID')">Delete</a></td>
+  </tr>
+</table>
+
+<input class="btn" type="button" onClick="_new()" value="New">
+<p>&nbsp;</p>
+</div> <!-- browse -->
+
+<div id="insert">
+    <p>&nbsp;</p>
+
+    <form method="POST" id="addNewStarshipPermit">
+        <legend><strong>Add Starship Route Permit</strong></legend>
+          <fieldset class="fields">
+            <label> starship </label> <select name="starship">
+            	<option value="0" selected>&nbsp;</option>
+                <option value="1">Millennium Falcon</option>
+                <option value="2">Cool Ship</option>
+                <option value="3">Boring Ship</option>
+                </select>
+            <label> route </label>  <select name="route">
+            	<option value="0" selected>&nbsp;</option>
+                <option value="1">Corellian Run</option>
+                <option value="2">Corellian Trade Spine</option>
+                <option value="3">Rimma Trade Route</option>
+                </select>
+            <label> date_permit </label> <input type="date" name="datePermit">
+      </fieldset>
+          <input class="btn" type="submit" id="addStarshipPermit" value="Add">
+          <input class="btn" type="button" value="cancel" onClick="_browse()">
+	</form> 
+</div><!-- insert -->
+<p>&nbsp;</p>
+<div id="update">
+    <form method="POST" id="UpdateStarshipPermit">
+        <legend><strong>Update Starship Route Permit</strong></legend>
+          <fieldset class="fields">
+          <input type="hidden" name="starshipPermitID" id="updateStarshipPermitID" value="1">
+          <label> permit_id: </label> 1
+            <label> starship </label> <select name="starship">
+            	<option value="0">&nbsp;</option>
+                <option value="1" selected>Millennium Falcon</option>
+                <option value="2">Cool Ship</option>
+                <option value="3">Boring Ship</option>
+                </select>
+            <label> route </label> <select name="route">
+            	<option value="0">&nbsp;</option>
+                <option value="1" selected>Corellian Run</option>
+                <option value="2">Corellian Trade Spine</option>
+                <option value="3">Rimma Trade Route</option>
+                </select>
+            <label> date_permit </label> <input type="date" name="date_permit" value="1990-10-25">
+      </fieldset>
+          <input class="btn" type="submit" id="UpdateSaveStarshipPermit" value="Save">
+          <input class="btn" type="button" value="cancel" onClick="_browse()">
+	</form> 
+</div><!-- update -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form method="POST" id="deleteStarshipPermit">
+      <legend><strong>Delete Starship Route Permit</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following?</p>
+          <input type="hidden" name="starshipPermitID" id="deleteStarshipPermitID" value="1">
+          <label><strong>permit_id:</strong></label> 1
+            <label> <strong>starship</strong> </label> Millennium Falcon
+            <label> <strong>route</strong> </label> Corellian Run
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeleteStarshipPermit" value="Delete">
+          <input class="btn" type="button" value="cancel" onClick="_browse()">
+  </form> 
+</div><!-- delete -->
+
+</body>
+</html>

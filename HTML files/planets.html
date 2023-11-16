@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>Planets</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript">
+		function showform(dowhat) {
+			/*
+			* four DIVS: browse, insert, update, delete
+			* this function sets one visible the others not
+			*/
+			if (dowhat == 'insert'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else { //by default display browse
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+		}
+    function _new() { showform('insert'); }
+    function _update(pid) { showform('update'); }
+    function _delete(pid) { showform ('delete'); }
+    function _browse() { showform ('browse'); }
+</script>
+</head>
+
+<body onload="_browse()">
+<h1>Planets</h1>
+
+[ <a href="index.html">Homepage</a> | <a href="pilots.html">Pilots</a> | <a href="starships.html">Starships</a> | <a href="weapon_loadouts.html">Weapon Loadouts</a> | <a href="hyperspace_routes.html">Hyperspace Routes</a> |  <a href="planets.html">Planets</a> | <a href="starship_route_permits.html">Starship Route Permits</a> | <a href="planets_in_routes.html">Planets In Routes</a> ]
+
+<div id="browse">
+<p>&nbsp;</p>
+
+<table border="1" cellpadding="5">
+  <tr>
+    <th>Planet Id</th>
+    <th>Name</th>
+    <th>Region</th>
+  </tr>
+  <tr>
+    <td align="right" >1</td>
+    <td >Coruscant</td>
+    <td >Core Worlds</td>
+  </tr>
+  <tr>
+    <td align="right" >2</td>
+    <td>Corellia</td>
+    <td>Core Worlds</td>
+  </tr>
+  <tr>
+    <td align="right">3</td>
+    <td>Kal'Shebbol</td>
+    <td>Outer Rim</td>
+  </tr>
+</table>
+
+<input class="btn" type="button" onClick="_new()" value="New">
+<p>&nbsp;</p>
+</div> <!-- browse -->
+
+<div id="insert">
+    <p>&nbsp;</p>
+
+    <form method="POST" id="addNewPlanet">
+        <legend><strong>Add Planet</strong></legend>
+          <fieldset class="fields">
+            <label> name </label> <input type="text" name="name">
+            <label> region </label> <input type="text" name="region">
+            <label> Hyperspace Route </label> <input type="text" name="name">
+      </fieldset>
+          <input class="btn" type="submit" id="addPlanet" value="Add">
+          <input class="btn" type="button" value="cancel" onClick="_browse()">
+	</form> 
+</div><!-- insert -->
+<p>&nbsp;</p>
+</body>
+</html>
