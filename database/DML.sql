@@ -5,7 +5,7 @@
 --
 
 -- get all pilot_ids, names, brthdates, and species for List Pilots page
-SELECT Pilots.pilot_id AS "Pilot ID", Pilots.name AS "Name", Pilots.birthdate AS "Birthdate", Pilots.species AS "Species" FROM Pilots;
+SELECT Pilots.pilot_id AS "Pilot_ID", Pilots.name AS "Name", Pilots.birthdate AS "Birthdate", Pilots.species AS "Species" FROM Pilots;
 
 --add new pilot
 INSERT INTO Pilots (name, birthdate, species) VALUES (:nameInput, :birthdateInput, :speciesInput);
@@ -30,7 +30,7 @@ DELETE FROM Pilots WHERE pilot_id = :pilot_ID_selected_from_browse_pilot_page;
 --
 
 -- get all starship_ids, names, types, and pilots for List Starships page
-SELECT Starships.starship_id AS "Starship ID", Starships.name AS "Name", Starships.type AS "Type", Pilots.name AS "Pilot" 
+SELECT Starships.starship_id AS "Starship_ID", Starships.name AS "Name", Starships.type AS "Type", Pilots.name AS "Pilot" 
 FROM Starships JOIN Pilots ON Starships.pilot_id = Pilots.pilot_id;
 
 --add new Starship
@@ -50,7 +50,7 @@ INSERT INTO Starships (name, type, pilot_id) VALUES (:nameInput, :typeInput, :pi
 --
 
 -- get all weapon_ids, types, and starships_ids for List Weapon Loadouts page
-SELECT Weapon_Loadouts.weapon_id AS "Weapon ID", Weapon_Loadouts.type AS "Type", Starships.name AS "Starship" 
+SELECT Weapon_Loadouts.weapon_id AS "Weapon_ID", Weapon_Loadouts.type AS "Type", Starships.name AS "Starship" 
 FROM Weapon_Loadouts JOIN Starships ON Weapon_Loadouts.starship_id = Starships.starship_id;
 
 --add new weapon loadout
@@ -70,7 +70,7 @@ INSERT INTO Weapon_Loadouts (type, starship_id) VALUES (:typeInput, :starship_id
 --
 
 -- get all route_ids and names for List Hyperspace Routes page
-SELECT Hyperspace_Routes.route_id AS "Hyperspace Route ID", Hyperspace_Routes.name AS "Name" FROM Hyperspace_Routes;
+SELECT Hyperspace_Routes.route_id AS "Hyperspace_Route_ID", Hyperspace_Routes.name AS "Name" FROM Hyperspace_Routes;
 
 --add new Hyperspace Route
 --insert data for a new Weapon_Loadout into the Weapon_Loadouts table
@@ -88,7 +88,7 @@ INSERT INTO Planets_In_Routes (planet_id, route_id) VALUES (:planet_ID_Input, :h
 --
 
 -- get all planet_ids, names, regions for List Planets page
-SELECT Planets.planet_id AS "Planet ID", Planets.name AS "Name", Planets.region AS "Region" FROM Planets;
+SELECT Planets.planet_id AS "Planet_ID", Planets.name AS "Name", Planets.region AS "Region" FROM Planets;
 
 --add new Planet
 --insert data for a new Planet
@@ -105,7 +105,7 @@ INSERT INTO Planets_In_Routes (planet_id, route_id) VALUES (:planet_ID_Input, :h
 --
 
 -- get all permit_ids, starship_ids, route_ids, and date_permits for List Starship Route Permits page
-SELECT Starship_Route_Permits.permit_id AS "Permit ID", Starships.name AS "Starship", Hyperspace_Routes.name AS "Hyperspace Route", Starship_Route_Permits.date_permit AS "Date of Permit"
+SELECT Starship_Route_Permits.permit_id AS "Permit_ID", Starships.name AS "Starship", Hyperspace_Routes.name AS "Hyperspace_Route", Starship_Route_Permits.date_permit AS "Date_of_Permit"
 FROM Starship_Route_Permits JOIN Starships ON Starship_Route_Permits.starship_id = Starships.starship_id
 JOIN Hyperspace_Routes ON Starship_Route_Permits.route_id = Hyperspace_Routes.route_id;
 
@@ -138,7 +138,7 @@ DELETE FROM Starship_Route_Permits WHERE permit_id = :permit_ID_selected_from_br
 --
 
 -- 
-SELECT Planets_In_Routes.planet_route_id AS "Planet Route ID", Planets.name AS "Planet", Hyperspace_Routes.name AS "Hyperspace Route"
+SELECT Planets_In_Routes.planet_route_id AS "Planet_Route_ID", Planets.name AS "Planet", Hyperspace_Routes.name AS "Hyperspace_Route"
 FROM Planets_In_Routes JOIN Planets ON Planets_In_Routes.planet_id = Planets.planet_id
 JOIN Hyperspace_Routes ON Planets_In_Routes.route_id = Hyperspace_Routes.route_id;
 

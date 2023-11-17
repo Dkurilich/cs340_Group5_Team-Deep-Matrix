@@ -17,12 +17,6 @@
 				document.getElementById('update').style.display = 'none';
 				document.getElementById('delete').style.display = 'none';
 			}
-			else if (dowhat == 'delete'){
-				document.getElementById('browse').style.display = 'none';
-				document.getElementById('insert').style.display = 'none';
-				document.getElementById('update').style.display = 'none';
-				document.getElementById('delete').style.display = 'block';
-			}
 			else { //by default display browse
 				document.getElementById('browse').style.display = 'block';
 				document.getElementById('insert').style.display = 'none';
@@ -31,7 +25,6 @@
 			}
 		}
     function _new() { showform('insert'); }
-    function _delete(pid) { showform ('delete'); }
     function _browse() { showform ('browse'); }
 </script>
 
@@ -61,13 +54,12 @@
     {{!-- Body section --}}
     <tbody>
 
-        {{!-- For each row, print the pilot_id, name, birthdate, species, in order --}}
         {{#each data}}
         <tr>
-            <td align="center" >{{this.permit_id}}</td>
-            <td align="right" >{{this.starship_id}}</td>
-            <td align="right" >{{this.route_id}}</td>
-            <td><a href="#" onclick="_delete('{{this.pilot_id}}')">Delete</a></td>
+            <td align="center" >{{this.Permit_ID}}</td>
+            <td align="right" >{{this.Starship}}</td>
+            <td align="right" >{{this.Hyperspace_Route}}</td>
+            <td align="right" >{{this.Date_of_Permit}}</td>
         </tr>
         {{/each}}
     </tbody>
@@ -99,6 +91,9 @@
         <option value="{{this.route_id}}">{{this.name}}</option>
         {{/each}}
         </select>
+
+        <label for="input-date-permit"> Date of Permit </label> <input type="date" name="input-date-permit" id="input-date-permit">
+
 
       </fieldset>
           <input class="btn" type="submit" id="addPermit" value="Add">

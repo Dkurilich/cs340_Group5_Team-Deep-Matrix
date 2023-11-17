@@ -1,0 +1,82 @@
+{{!-- Just some plain text --}}
+
+<h1>Weapon Loadouts</h1>
+
+[ <a href="index.html">Homepage</a> | <a href="pilots.html">Pilots</a> | <a href="starships.html">Starships</a> | <a href="weapon_loadouts.html">Weapon Loadouts</a> | <a href="hyperspace_routes.html">Hyperspace Routes</a> |  <a href="planets.html">Planets</a> | <a href="starship_route_permits.html">Starship Route Permits</a> | <a href="planets_in_routes.html">Planets In Routes</a> ]
+<link href="style.css" rel="stylesheet" type="text/css" />
+
+<script language="JavaScript">
+		function showform(dowhat) {
+			/*
+			* four DIVS: browse, insert, update, delete
+			* this function sets one visible the others not
+			*/
+			if (dowhat == 'insert'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'block';
+			}
+            
+            else { //by default display browse
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'none';
+			}
+		}
+    function _new() { showform('insert'); }
+    function _browse() { showform ('browse'); }
+
+</script>
+
+
+{{!-- BROWSE --}}
+<div id="browse">
+{{!-- blank space --}}
+<p>&nbsp;</p>
+
+<table id="weapon-table" border="1" cellpadding="5">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {{!-- For each row, print the weapon_id, type, and starship_id, in order --}}
+        {{#each data}}
+        <tr data-value="{{this.Weapon_ID}}">
+            <td align="center">{{this.Weapon_ID}}</td>
+            <td align="right">{{this.Type}}</td>
+            <td align="right">{{this.Starship}}</td>
+            <td><button onclick="deleteWeapon({{this.Weapon_ID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script = src="./js/delete_weapon.js"></script>
+<button onClick="_new()">New</button>
+</div>
+
+
+{{!--INSERT --}}
+<div id="insert">
+<h2>Add New Weapon</h2>
+<form id="add-weapon-form" method="POST" action="/add-weapon-form">
+    <label for="input-type">Type: </label>
+    <input type="text" name="input-type" id="input-type">
+    
+    <select name="input-starship" id="input-starship-ajax">
+        <option value="">Select a Starship</option>
+        {{#each starships}}
+        <option value="{{this.starship_id}}">{{this.name}}</option>
+        {{/each}}
+    </select>
+
+    <input class="btn" type="submit" value="Add">
+    <input class="btn" type="button" value="Cancel" onClick="_browse()">
+</form>
+</div>
