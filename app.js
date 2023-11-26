@@ -87,7 +87,7 @@ app.post('/add-pilot-form', function(req, res){
 // view data from Starships Table
 app.get('/starships.html', function(req, res){  
         
-    let query1 = "SELECT Starships.starship_id AS 'Starship_ID', Starships.name AS 'Name', Starships.type AS 'Type', Pilots.name AS 'Pilot' FROM Starships JOIN Pilots ON Starships.pilot_id = Pilots.pilot_id;";
+    let query1 = "SELECT Starships.starship_id AS 'Starship_ID', Starships.name AS 'Name', Starships.type AS 'Type', Pilots.name AS 'Pilot' FROM Starships LEFT JOIN Pilots ON Starships.pilot_id = Pilots.pilot_id;";
 
     let query2= "SELECT * From Pilots;";
 
@@ -112,8 +112,14 @@ app.post('/add-starship-form', function(req, res){
 
     // Capture NULL values
 
+    let pilot = parseInt(data['input-pilot']);
+    if (isNaN(pilot))
+    {
+        pilot = 'NULL'
+    }
+
     // Create the query and run it on the database
-    query1 = `INSERT INTO Starships (name, type, pilot_id) VALUES ('${data['input-name']}', '${data['input-type']}', '${data['input-pilot']}')`;
+    query1 = `INSERT INTO Starships (name, type, pilot_id) VALUES ('${data['input-name']}', '${data['input-type']}', ${pilot})`;
  
     db.pool.query(query1, function(error, rows, fields){
 
