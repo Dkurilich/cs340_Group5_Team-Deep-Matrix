@@ -165,9 +165,21 @@ app.post('/add-permit-form', function(req, res){
     let data = req.body;
 
     // Capture NULL values
+    let starship = parseInt(data['input-starship']);
+    if (isNaN(starship))
+    {
+        starship = 'NULL'
+    }
+
+    let route = parseInt(data['input-route']);
+    if (isNaN(route))
+    {
+        route = 'NULL'
+    }
+
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO Starship_Route_Permits (starship_id, route_id, date_permit) VALUES ('${data['input-starship']}', '${data['input-route']}', '${data['input-date-permit']}')`;
+    query1 = `INSERT INTO Starship_Route_Permits (starship_id, route_id, date_permit) VALUES (${starship}, ${route}, '${data['input-date-permit']}')`;
  
     db.pool.query(query1, function(error, rows, fields){
 
