@@ -188,6 +188,27 @@ app.post('/add-permit-form', function(req, res){
     })
 })
 
+//delete a starship route permit
+app.delete('/delete-permit-ajax', function(req, res, next){
+    let data = req.body;
+    let permitID = parseInt(data.id);
+
+    let deletePermit = `DELETE FROM Starship_Route_Permits WHERE permit_id = ?`;
+
+    db.pool.query(deletePermit, [permitID], function(error, rows, fields){
+        if(error) {
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else
+        {
+            res.sendStatus(204);
+        }
+    })
+
+});
+
+
 // View data from Weapon Loadouts table
 app.get('/weapon_loadouts.html', function(req, res)
 {
@@ -366,6 +387,8 @@ app.post('/add-planet-in-route-form', function(req, res){
         }
     })
 })
+
+
 
 
 /*

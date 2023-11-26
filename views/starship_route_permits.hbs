@@ -36,7 +36,7 @@
 {{!-- The Data from our Database --}}
 
 {{!-- Create a table --}}
-<table border="1" cellpadding="5" >
+<table id="permit-table" border="1" cellpadding="5" >
 
     {{!-- Header section --}}
     <thead>
@@ -49,6 +49,7 @@
                 {{@key}}
             </th>
             {{/each}}
+            <th></th>
 
         </tr>
     </thead>
@@ -62,11 +63,12 @@
             <td align="right" >{{this.Starship}}</td>
             <td align="right" >{{this.Hyperspace_Route}}</td>
             <td align="right" >{{this.Date_of_Permit}}</td>
+            <td><button onclick="deletePermit({{this.Permit_ID}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
-
+<script = src="./js/delete_permit.js"></script>
 <input class="btn" type="button" onClick="_new()" value="New">
 <p>&nbsp;</p>
 </div> <!-- browse -->
