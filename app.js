@@ -138,7 +138,7 @@ app.post('/add-starship-form', function(req, res){
 // view data from Starship Route Permits Table
 app.get('/starship_route_permits.html', function(req, res){  
 
-    let query1 = "SELECT Starship_Route_Permits.permit_id AS 'Permit_ID', Starships.name AS 'Starship', Hyperspace_Routes.name AS 'Hyperspace_Route', Starship_Route_Permits.date_permit AS 'Date_of_Permit' FROM Starship_Route_Permits JOIN Starships ON Starship_Route_Permits.starship_id = Starships.starship_id JOIN Hyperspace_Routes ON Starship_Route_Permits.route_id = Hyperspace_Routes.route_id;"
+    let query1 = "SELECT Starship_Route_Permits.permit_id AS 'Permit_ID', Starships.name AS 'Starship', Hyperspace_Routes.name AS 'Hyperspace_Route', Starship_Route_Permits.date_permit AS 'Date_of_Permit' FROM Starship_Route_Permits LEFT OUTER JOIN Starships ON Starship_Route_Permits.starship_id = Starships.starship_id LEFT OUTER JOIN Hyperspace_Routes ON Starship_Route_Permits.route_id = Hyperspace_Routes.route_id;"
     let query2 = "SELECT * From Starships;"
     let query3 = "SELECT * FROM Hyperspace_Routes;"
 

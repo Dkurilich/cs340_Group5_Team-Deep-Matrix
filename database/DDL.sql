@@ -53,8 +53,8 @@ CREATE OR REPLACE TABLE Weapon_Loadouts (
 -- has foreign keys to Starships and Hyperspace_Routes
 CREATE OR REPLACE TABLE Starship_Route_Permits (
     permit_id int(11) NOT NULL AUTO_INCREMENT,
-    starship_id int(11) NOT NULL,
-    route_id int(11) NOT NULL,
+    starship_id int(11) NULL,
+    route_id int(11) NULL,
     date_permit DATE NOT NULL,
     PRIMARY KEY (permit_id),
     FOREIGN KEY(starship_id) REFERENCES Starships(starship_id) ON DELETE CASCADE,
