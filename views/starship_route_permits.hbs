@@ -1,6 +1,4 @@
-{{!-- Citation for code: --}}
-{{!-- Date: 11/16/23 --}}
-{{!-- Adapted from https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
+{{!-- Just some plain text --}}
 
 <h1>Starship Route Permits</h1>
 
@@ -71,7 +69,40 @@
 <script = src="./js/delete_permit.js"></script>
 <input class="btn" type="button" onClick="_new()" value="New">
 <p>&nbsp;</p>
-</div> <!-- browse -->
+
+    <form id="update-permit-ajax">
+        <legend><strong>Update Starship Route Permit</strong></legend>
+        <p>To update a specific Permit ID, select the permit from the drop-down menu on the left and thee desired Starship and Hyperspace Route from the drop down menus on the right</p>
+          <fieldset class="fields">
+                <select name="update-permit_id" id="mySelect">
+                    <option value="">Select a Permit ID</option>
+                    {{#each data}}
+                    <option value="{{this.Permit_ID}}">{{this.Permit_ID}}</option>
+                    {{/each}}
+                </select>
+
+                <select name="update-starship" id="update-starship">
+                    <option value="">Select a Starship</option>
+                    {{#each starships}}
+                    <option value="{{this.starship_id}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+
+                <select name="update-route" id="update-route">
+                    <option value="">Select a Hyperpsace Route</option>
+                    {{#each routes}}
+                    <option value="{{this.route_id}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+
+
+        </fieldset>
+
+          <input class="btn" type="submit" id="UpdateSaveStarshipPermit" value="Save">
+	</form> 
+    <script src="./js/update_permit.js"></script>
+</div><!-- browse -->
+<p>&nbsp;</p>
 
 
 {{!-- Insert a new permit --}}
@@ -105,5 +136,7 @@
 	</form> 
 </div><!-- insert -->
 <p>&nbsp;</p>
+
+
 
 

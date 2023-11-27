@@ -206,6 +206,57 @@ app.post('/add-permit-form', function(req, res){
     })
 })
 
+
+//Edit starship route permits
+
+app.put('/put-permit-ajax', function(req,res,next){
+    let data = req.body;
+  
+    let permitID = parseInt(data.permitID);
+    let starshipID = parseInt(data.starshipID);
+    let routeID = parseInt(data.routeID);
+
+    //capture Null values
+    if (isNaN(starshipID)) 
+    {
+        starshipID = 'NULL';
+    }
+
+    if (isNaN(routeID)) 
+    {
+        routeID = 'NULL';
+    }
+
+    let queryUpdate = `UPDATE Starship_Route_Permits SET starship_id = ${starshipID}, route_id = ${routeID} WHERE permit_id = ?`;
+    let selectpermitID = `SELECT permit_id, starship_id, route_id FROM Starship_Route_Permits WHERE permit_id = ?`
+  
+          // Run the 1st query
+          db.pool.query(queryUpdate, [permitID], function(error, rows, fields){
+              if (error) {
+  
+              // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+              console.log(error);
+              res.sendStatus(400);
+              }
+  
+              // If there was no error, we run our second query and return that data so we can use it to update the permit's
+              // table on the front-end
+              else
+              {
+                  // Run the second query
+                  db.pool.query(selectpermitID, [permitID], function(error, rows, fields) {
+  
+                      if (error) {
+                          console.log(error);
+                          res.sendStatus(400);
+                      } else {
+                          res.send(rows);
+                      }
+                  })
+              }
+  })});
+
+
 //delete a starship route permit
 app.delete('/delete-permit-ajax', function(req, res, next){
     let data = req.body;
