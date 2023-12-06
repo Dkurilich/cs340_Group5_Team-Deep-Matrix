@@ -1,3 +1,9 @@
+// Citation for code:
+// Date: 11/16/23
+// Adapted from https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
+
+
 function deletePermit(permitID) {
     // Put our data we want to send in a javascript object
     let data = {

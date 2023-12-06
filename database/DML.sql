@@ -106,8 +106,8 @@ INSERT INTO Planets_In_Routes (planet_id, route_id) VALUES (:planet_ID_Input, :h
 
 -- get all permit_ids, starship_ids, route_ids, and date_permits for List Starship Route Permits page
 SELECT Starship_Route_Permits.permit_id AS "Permit_ID", Starships.name AS "Starship", Hyperspace_Routes.name AS "Hyperspace_Route", Starship_Route_Permits.date_permit AS "Date_of_Permit"
-FROM Starship_Route_Permits JOIN Starships ON Starship_Route_Permits.starship_id = Starships.starship_id
-JOIN Hyperspace_Routes ON Starship_Route_Permits.route_id = Hyperspace_Routes.route_id;
+FROM Starship_Route_Permits LEFT OUTER JOIN Starships ON Starship_Route_Permits.starship_id = Starships.starship_id
+LEFT OUTER JOIN Hyperspace_Routes ON Starship_Route_Permits.route_id = Hyperspace_Routes.route_id;
 
 --add Starship Route Permit
 -- get all starship_ids and names to populate the starship dropdown
