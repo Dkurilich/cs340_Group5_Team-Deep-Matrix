@@ -29,7 +29,7 @@
 {{!-- blank space --}}
 <p>&nbsp;</p>
 
-<table border="1" cellpadding="5">
+<table id="route-table" border="1" cellpadding="5">
     <thead>
         <tr>
             {{#each data.[0]}}
@@ -37,19 +37,22 @@
                 {{@key}}
             </th>
             {{/each}}
+            <th></th>
         </tr>
     </thead>
 
     <tbody>
 
         {{#each data}}
-        <tr>
+        <tr data-value="{{this.Hyperspace_Route_ID}}">
             <td align="center">{{this.Hyperspace_Route_ID}}</td>
             <td align="right">{{this.Name}}</td>
+            <td><button onclick="deleteRoute({{this.Hyperspace_Route_ID}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+<script = src="./js/delete_route.js"></script>
 <button onClick="_new()">New</button>
 </div>
 

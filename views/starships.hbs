@@ -37,7 +37,7 @@
 {{!-- The Data from our Database --}}
 
 {{!-- Create a table --}}
-<table border="1" cellpadding="5" >
+<table id="starship-table" border="1" cellpadding="5" >
 
     {{!-- Header section --}}
     <thead>
@@ -50,6 +50,7 @@
                 {{@key}}
             </th>
             {{/each}}
+            <th></th>
         </tr>
     </thead>
 
@@ -58,16 +59,17 @@
 
         {{!-- For each row, print the starship_id, name, type, pilot name,  in order --}}
         {{#each data}}
-        <tr>
+        <tr data-value="{{this.Starship_ID}}">
             <td align="center" >{{this.Starship_ID}}</td>
             <td align="right" >{{this.Name}}</td>
             <td align="right" >{{this.Type}}</td>
             <td align="right" >{{this.Pilot}}</td>
+            <td><button onclick="deleteStarship({{this.Starship_ID}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
-
+<script = src="./js/delete_starship.js"></script>
 <input class="btn" type="button" onClick="_new()" value="New">
 <p>&nbsp;</p>
 </div> <!-- browse -->

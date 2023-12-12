@@ -10,7 +10,7 @@ var app     = express();            // We need to instantiate an express object 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
-PORT        = 7291;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 7301;                 // Set a port number at the top so it's easy to change in the future
 
 
 // app.js
@@ -84,6 +84,26 @@ app.post('/add-pilot-form', function(req, res){
     })
 })
 
+// delete Pilot
+app.delete('/delete-pilot-ajax', function(req, res, next){
+    let data = req.body;
+    let pilotID = parseInt(data.id);
+
+    let deletePilot = `DELETE FROM Pilots WHERE pilot_id = ?`;
+
+    db.pool.query(deletePilot, [pilotID], function(error, rows, fields){
+        if(error) {
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else
+        {
+            res.sendStatus(204);
+        }
+    })
+
+});
+
 // view data from Starships Table
 app.get('/starships.html', function(req, res){  
         
@@ -139,6 +159,26 @@ app.post('/add-starship-form', function(req, res){
         }
     })
 })
+
+// delete Starship
+app.delete('/delete-starship-ajax', function(req, res, next){
+    let data = req.body;
+    let starshipID = parseInt(data.id);
+
+    let deleteStarship = `DELETE FROM Starships WHERE starship_id = ?`;
+
+    db.pool.query(deleteStarship, [starshipID], function(error, rows, fields){
+        if(error) {
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else
+        {
+            res.sendStatus(204);
+        }
+    })
+
+});
 
 
 // view data from Starship Route Permits Table
@@ -378,6 +418,26 @@ app.post('/add-route-form', function(req, res){
         }
     })
 })
+
+// delete from Hyperspace_Routes
+app.delete('/delete-route-ajax', function(req, res, next){
+    let data = req.body;
+    let routeID = parseInt(data.id);
+
+    let deleteRoute = `DELETE FROM Hyperspace_Routes WHERE route_id = ?`;
+
+    db.pool.query(deleteRoute, [routeID], function(error, rows, fields){
+        if(error) {
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else
+        {
+            res.sendStatus(204);
+        }
+    })
+
+});
 
 // View data from Hyperspace Routes table
 app.get('/planets.html', function(req, res)

@@ -39,6 +39,7 @@ SELECT pilot_id, name FROM Pilots;
 --insert data for a new Starship into the Starships table
 INSERT INTO Starships (name, type, pilot_id) VALUES (:nameInput, :typeInput, :pilot_id_from_dropdown_Input);
 
+DELETE FROM Starships WHERE starship_id = :starship_id_selected;
 
 
 
@@ -59,7 +60,8 @@ SELECT starship_id, name FROM Starships;
 --insert data for a new Weapon_Loadout into the Weapon_Loadouts table
 INSERT INTO Weapon_Loadouts (type, starship_id) VALUES (:typeInput, :starship_id_from_dropdown_Input);
 
-
+--delete from Weapon_Loadouts
+DELETE FROM Weapon_Loadouts WHERE weapon_id = :weapon_id_selected;
 
 
 
@@ -77,7 +79,7 @@ SELECT Hyperspace_Routes.route_id AS "Hyperspace_Route_ID", Hyperspace_Routes.na
 INSERT INTO Hyperspace_Routes (name) VALUES (:nameInput);
 INSERT INTO Planets_In_Routes (planet_id, route_id) VALUES (:planet_ID_Input, :hyperspace_route_ID_input);
 
-
+DELETE FROM Hyperspace_Routes WHERE route_id = :route_id_selected;
 
 
 

@@ -16,14 +16,10 @@
 			if (dowhat == 'insert'){
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'block';
-				document.getElementById('update').style.display = 'none';
-				document.getElementById('delete').style.display = 'none';
 			}
 			else { //by default display browse
 				document.getElementById('browse').style.display = 'block';
 				document.getElementById('insert').style.display = 'none';
-				document.getElementById('update').style.display = 'none';
-				document.getElementById('delete').style.display = 'none';
 			}
 		}
     function _new() { showform('insert'); }
@@ -35,7 +31,7 @@
 {{!-- The Data from our Database --}}
 
 {{!-- Create a table --}}
-<table border="1" cellpadding="5" >
+<table id="pilot-table" border="1" cellpadding="5" >
 
     {{!-- Header section --}}
     <thead>
@@ -48,6 +44,7 @@
                 {{@key}}
             </th>
             {{/each}}
+            <th></th>
         </tr>
     </thead>
 
@@ -56,16 +53,17 @@
 
         {{!-- For each row, print the pilot_id, name, birthdate, species, in order --}}
         {{#each data}}
-        <tr>
+        <tr data-value="{{this.Pilot_ID}}">
             <td align="center" >{{this.Pilot_ID}}</td>
             <td align="right" >{{this.Name}}</td>
             <td align="right" >{{this.Birthdate}}</td>
             <td align="right" >{{this.Species}}</td>
+            <td><button onclick="deletePilot({{this.Pilot_ID}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
-
+<script = src="./js/delete_pilot.js"></script>
 <input class="btn" type="button" onClick="_new()" value="New">
 <p>&nbsp;</p>
 </div> <!-- browse -->
